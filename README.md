@@ -8,7 +8,7 @@ Easy and simple.
 
 * **[Install Cargo](https://rustup.rs/)**
 
-Then run:
+Open a terminal and run:
 
 ```shell
 git clone https://github.com/containerscrew/gitrack
