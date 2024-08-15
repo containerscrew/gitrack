@@ -18,7 +18,7 @@ cargo install --path .
 
 # Usage
 
-```shell
+```bash
 gitrack --help
 ```
 
@@ -26,13 +26,13 @@ gitrack --help
 
 Scanning for untracked changes, specific folder:
 
-```shell
+```bash
 gitrack -p /my/folder/path
 ```
 
 Summarized output:
 
-```shell
+```bash
 gitrack -p /my/folder/path -s
 gitrack -s # remember without -p will scan your home folder
 ```
