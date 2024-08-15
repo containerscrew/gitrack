@@ -1,6 +1,6 @@
 # gitrack
 
-I have thousands of personal/work repositories in my laptop. Sometimes you jump from change to change and forget to upload the commit. This tool looks for untracked changes in your local folders.
+I have a lot of personal/work repositories in my laptop. Sometimes you jump from change to change and forget to upload the commit. This tool looks for untracked changes in your local folders.
 
 Easy and simple.
 
