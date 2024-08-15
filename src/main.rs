@@ -25,7 +25,7 @@ fn main() {
     // Init the CLI using clap
     let args = Args::parse();
 
-    println!("{}", "-----> Starting untracked <-----".green());
+    println!("{}", "-----> Starting gitrack <-----".green());
 
     let start_path = Path::new(&args.path);
     let git_repos = find_git_repos(start_path);
@@ -55,7 +55,7 @@ fn main() {
 
 fn print_results(results: Vec<(PathBuf, Vec<String>)>, summary: bool) {
     for (repo_path, untracked_files) in results {
-        println_orange!("Repository: {}", repo_path.display());
+        println_orange!("Untracked files in: {}", repo_path.display());
         if !summary {
             for file in untracked_files {
                 println_light_orange!("  - {}", file);

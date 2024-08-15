@@ -24,7 +24,7 @@ gitrack --help
 
 > By default, it will look for untracked changes in your home folder.
 
-Scanning for untracked changes, specific folder
+Scanning for untracked changes, specific folder:
 
 ```shell
 gitrack -p /my/folder/path
