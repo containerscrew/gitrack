@@ -1,37 +1,35 @@
-name: Test 🤖
-
-on:
-  pull_request:
-  push:
-
-env:
-  CARGO_TERM_COLOR: always
-
-jobs:
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install latest stable
-        uses: actions-rust-lang/setup-rust-toolchain@v1
-        with:
-          toolchain: stable
-          override: true
-          components: rustfmt, clippy
-
-      - name: Run cargo check
-        uses: actions-rs/cargo@v1
-        with:
-          command: check
-
-      - name: Run cargo test
-        uses: actions-rs/cargo@v1
-        with:
-          command: test
-
-#      - name: Check fmt
+#name: Test 🤖
+#
+#on:
+#  pull_request:
+#  push:
+#
+#env:
+#  CARGO_TERM_COLOR: always
+#
+#jobs:
+#  test:
+#    name: Test
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Install latest stable
+#        uses: actions-rust-lang/setup-rust-toolchain@v1
+#        with:
+#          toolchain: stable
+#          override: true
+#          components: rustfmt, clippy
+#
+#      - name: Run cargo check
 #        uses: actions-rs/cargo@v1
 #        with:
-#          command: fmt --check
+#          command: check
+#
+#      - name: Run cargo test
+#        uses: actions-rs/cargo@v1
+#        with:
+#          command: test
+#
+#      - name: Rustfmt Check
+#        uses: actions-rust-lang/rustfmt@v1

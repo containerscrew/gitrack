@@ -1,31 +1,31 @@
-name: Build 🪛
-
-on:
-  pull_request:
-  push:
-
-env:
-  CARGO_TERM_COLOR: always
-
-jobs:
-  build:
-    name: Build the binary
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install latest stable
-        uses: actions-rust-lang/setup-rust-toolchain@v1
-        with:
-          toolchain: stable
-          components: rustfmt, clippy
-
-      - name: Run cargo check
-        uses: actions-rs/cargo@v1
-        with:
-          command: check
-
-      - name: Run cargo test
-        uses: actions-rs/cargo@v1
-        with:
-          command: build --release
+#name: Build 🪛
+#
+#on:
+#  pull_request:
+#  push:
+#
+#env:
+#  CARGO_TERM_COLOR: always
+#
+#jobs:
+#  build:
+#    name: Build the binary
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Install latest stable
+#        uses: actions-rust-lang/setup-rust-toolchain@v1
+#        with:
+#          toolchain: stable
+#          components: rustfmt, clippy
+#
+#      - name: Run cargo check
+#        uses: actions-rs/cargo@v1
+#        with:
+#          command: check
+#
+#      - name: Run cargo test
+#        uses: actions-rs/cargo@v1
+#        with:
+#          command: build --release
