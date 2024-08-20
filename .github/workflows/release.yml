@@ -37,7 +37,7 @@ jobs:
 
       - name: Install dependencies for musl
         if: matrix.platform.os == 'ubuntu-latest'
-        run: sudo apt-get -qq install musl-tools
+        run: sudo apt-get -qq install musl-tools pkg-config libssl-dev
 
       - name: Build binary
         uses: houseabsolute/actions-rust-cross@v0
