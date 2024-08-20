@@ -12,16 +12,16 @@ on:
 jobs:
   release:
     name: Release - ${{ matrix.platform.release_for }}
-    strategy:
-      matrix:
-        platform:
-          - release_for: linux-arm64
-            os: ubuntu-latest
-            target: aarch64-unknown-linux-gnu
-
-          - release_for: linux-amd64
-            os: ubuntu-latest
-            target: x86_64-unknown-linux-musl
+#    strategy:
+#      matrix:
+#        platform:
+#          - release_for: linux-arm64
+#            os: ubuntu-latest
+#            target: aarch64-unknown-linux-gnu
+#
+#          - release_for: linux-amd64
+#            os: ubuntu-latest
+#            target: x86_64-unknown-linux-musl
 
 #          - release_for: darwin-amd64
 #            os: macOS-latest
