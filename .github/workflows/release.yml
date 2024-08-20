@@ -31,22 +31,29 @@ jobs:
 #            os: macOS-latest
 #            target: aarch64-apple-darwin
 
-    runs-on: ${{ matrix.platform.os }}
+    runs-on: ubuntu-latest #${{ matrix.platform.os }}
     steps:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        if: matrix.platform.os == 'ubuntu-latest'
+#        if: matrix.platform.os == 'ubuntu-latest'
         run: sudo apt-get -qq install pkg-config libssl-dev musl-tools
 
-      - name: Build binary
-        uses: houseabsolute/actions-rust-cross@v0
-        with:
-          command: build
-          toolchain: stable
-          target: ${{ matrix.platform.target }}
-          args: "--release"
-          strip: true
+      - run: rustup update stable && rustup default stable
+      - run: rustup target add aarch64-unknown-linux-gnu x86_64-unknown-linux-musl
+
+      - run: cargo build --release --target x86_64-unknown-linux-musl
+      - run: cargo build --release --target aarch64-unknown-linux-gnu
+
+
+#      - name: Build binary
+#        uses: houseabsolute/actions-rust-cross@v0
+#        with:
+#          command: build
+#          toolchain: stable
+#          target: ${{ matrix.platform.target }}
+#          args: "--release"
+#          strip: true
 
 #      - name: Set container tag
 #        id: set_tag
