@@ -16,6 +16,12 @@ cd gitrack
 make install
 ```
 
+# Uninstall
+
+```shell
+make uninstall
+```
+
 # Usage
 
 ```bash

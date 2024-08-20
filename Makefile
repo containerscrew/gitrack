@@ -21,3 +21,6 @@ build: ## Build binary
 
 install: ## Install binary
 	cargo install --path .
+
+uninstall: ## Uninstall binary
+	cargo uninstall ${BINARY_NAME}
