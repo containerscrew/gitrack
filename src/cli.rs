@@ -1,5 +1,5 @@
-use clap::{Parser};
 use crate::utils::default_home_dir;
+use clap::Parser;
 
 #[derive(Parser, Debug)]
 #[clap(
@@ -24,7 +24,7 @@ pub struct Args {
         short = 's',
         long = "summary",
         help = "Show only repositories without listing untracked files",
-        required = false,
+        required = false
     )]
     pub summary: bool,
 }

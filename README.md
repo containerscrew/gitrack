@@ -13,7 +13,7 @@ Open a terminal and run:
 ```shell
 git clone https://github.com/containerscrew/gitrack
 cd gitrack
-cargo install --path .
+make install
 ```
 
 # Usage
@@ -51,6 +51,7 @@ Scan specific folder with details:
 
 * Implement git commit scan for sensitive data using regex. Just for fun. Like gitleaks does.
 * Compile the binary for linux/darwin arm64/amd64.
+* Support diff files.
 
 # License
 

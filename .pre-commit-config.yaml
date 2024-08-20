@@ -6,7 +6,6 @@ repos:
       -  id: check-case-conflict
       -  id: check-merge-conflict
       -  id: check-symlinks
-      -  id: check-yaml
       -  id: end-of-file-fixer
       -  id: mixed-line-ending
       -  id: trailing-whitespace
@@ -21,6 +20,6 @@ repos:
   - repo: https://github.com/doublify/pre-commit-rust
     rev: v1.0
     hooks:
-      # - id: fmt
-      #   args: ['--verbose', '--']
+      - id: fmt
+      # args: ['--verbose', '--']
       - id: cargo-check

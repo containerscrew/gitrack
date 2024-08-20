@@ -1,5 +1,5 @@
-use std::path::{Path, PathBuf};
 use git2::{Repository, StatusOptions};
+use std::path::{Path, PathBuf};
 use walkdir::WalkDir;
 
 pub fn find_git_repos(start_path: &Path) -> Vec<PathBuf> {
