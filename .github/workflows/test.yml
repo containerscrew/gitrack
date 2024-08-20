@@ -1,26 +1,29 @@
-#name: Test 🤖
-#
-#on:
-#  pull_request:
-#  push:
-#
-#env:
-#  CARGO_TERM_COLOR: always
-#
-#jobs:
-#  test:
-#    name: Test
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#
-#      - name: Install latest stable
-#        uses: actions-rust-lang/setup-rust-toolchain@v1
-#        with:
-#          toolchain: stable
-#          override: true
-#          components: rustfmt, clippy
-#
+name: Test 🤖
+
+on:
+  pull_request:
+  push:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install latest stable
+        uses: actions-rust-lang/setup-rust-toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+          components: rustfmt, clippy
+
+      - name: Run cargo test
+        run: cargo test
+
 #      - name: Run cargo check
 #        uses: actions-rs/cargo@v1
 #        with:
