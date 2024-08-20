@@ -21,25 +21,25 @@ jobs:
           - release_for: linux-arm64
             os: ubuntu-latest
             target: aarch64-unknown-linux-gnu
-            bin: ${{env.BIN_NAME}}
+#            bin: ${{ env.BIN_NAME }}
             command: build
 
           - release_for: linux-amd64
             os: ubuntu-latest
             target: x86_64-unknown-linux-musl
-            bin: ${{env.BIN_NAME}}
+#            bin: ${{ env.BIN_NAME }}
             command: build
 
           - release_for: darwin-amd64
             os: macOS-latest
             target: x86_64-apple-darwin
-            bin: ${{env.BIN_NAME}}
+#            bin: ${{ env.BIN_NAME }}
             command: build
 
           - release_for: darwin-arm64
             os: macOS-latest
             target: aarch64-apple-darwin
-            bin: ${{env.BIN_NAME}}
+#            bin: ${{ env.BIN_NAME }}
             command: build
 
     runs-on: ${{ matrix.platform.os }}
