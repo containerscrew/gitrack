@@ -44,7 +44,7 @@ jobs:
           command: build
           toolchain: stable
           target: ${{ matrix.platform.target }}
-          args: "--release --locked"
+          args: "--release"
           strip: true
 
 #      - name: Set container tag
