@@ -22,7 +22,7 @@ jobs:
         run: cargo test --all-features
 
   fmt:
-    name: Rustfmt Check
+    name: Fmt & lint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,7 +31,11 @@ jobs:
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
-          components: rustfmt
+          components: rustfmt, clippy
 
       - name: Rustfmt Check
         uses: actions-rust-lang/rustfmt@v1
+
+      - name: Lint
+        run: cargo clippy --all-features -- -D warnings
+
