@@ -21,8 +21,6 @@ jobs:
       - name: Run cargo test
         run: cargo test --all-features
 
-      - name: Rustfmt Check
-        uses: actions-rust-lang/rustfmt@v1
   fmt:
     name: Rustfmt Check
     runs-on: ubuntu-latest
@@ -33,7 +31,7 @@ jobs:
         uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
-          components: rustfmt, clippy
+          components: rustfmt
 
       - name: Rustfmt Check
         uses: actions-rust-lang/rustfmt@v1
