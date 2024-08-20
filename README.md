@@ -4,6 +4,13 @@ I have a lot of personal/work repositories in my laptop. Sometimes you jump from
 
 Easy and simple.
 
+# Supported Platforms
+
+| Arch   | ARM64 | AMD64 |
+|--------|-------|-------|
+| darwin | ✅     | ✅   |
+| linux  | ✅     | ✅   |
+
 # Installation
 
 * **[Install Cargo](https://rustup.rs/)**
