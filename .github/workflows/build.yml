@@ -1,4 +1,4 @@
-name: Build 🛠️
+name: Build 🪛
 
 on:
   pull_request:
@@ -14,11 +14,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install latest nightly
-        uses: actions-rs/toolchain@v1
+      - name: Install latest stable
+        uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
-          override: true
           components: rustfmt, clippy
 
       - name: Run cargo check

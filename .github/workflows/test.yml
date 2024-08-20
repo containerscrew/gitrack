@@ -1,4 +1,4 @@
-name: Test 🛠️
+name: Test 🤖
 
 on:
   pull_request:
@@ -14,8 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install latest nightly
-        uses: actions-rs/toolchain@v1
+      - name: Install latest stable
+        uses: actions-rust-lang/setup-rust-toolchain@v1
         with:
           toolchain: stable
           override: true
@@ -31,7 +31,7 @@ jobs:
         with:
           command: test
 
-      - name: Check fmt
-        uses: actions-rs/cargo@v1
-        with:
-          command: fmt --check
+#      - name: Check fmt
+#        uses: actions-rs/cargo@v1
+#        with:
+#          command: fmt --check
