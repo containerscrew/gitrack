@@ -65,6 +65,7 @@ Scan specific folder with details:
 * Implement git commit scan for sensitive data using regex. Just for fun. Like gitleaks does.
 * Compile the binary for linux/darwin arm64/amd64.
 * Support diff files.
+* Control threads
 
 # Links
 
