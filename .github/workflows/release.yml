@@ -35,9 +35,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install dependencies for musl
+      - name: Install dependencies
         if: matrix.platform.os == 'ubuntu-latest'
-        run: sudo apt-get -qq install musl-tools libssl-dev
+        run: sudo apt-get -qq install pkg-config libssl-dev
+
       - name: Build binary
         uses: houseabsolute/actions-rust-cross@v0
         with:
