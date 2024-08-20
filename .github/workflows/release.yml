@@ -24,6 +24,11 @@ jobs:
           - { os: windows-latest, target: aarch64-pc-windows-msvc }
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install dependencies for musl
+        if: runner.os == 'Linux' && contains(matrix.platform.target, 'musl')
+        run: sudo apt-get -qq install musl-tools
+
       - name: Install Rust toolchain
         run: rustup target add ${{ matrix.platform.target }}
 
