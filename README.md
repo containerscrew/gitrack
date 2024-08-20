@@ -53,6 +53,10 @@ Scan specific folder with details:
 * Compile the binary for linux/darwin arm64/amd64.
 * Support diff files.
 
+# Links
+
+* [Using cargo in CI](https://doc.rust-lang.org/cargo/guide/continuous-integration.html)
+
 # License
 
 [License](./LICENSE)
