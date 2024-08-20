@@ -1,10 +1,9 @@
-use colored::*;
-
 use clap::{Parser};
+use crate::utils::default_home_dir;
 
 #[derive(Parser, Debug)]
 #[clap(
-    about = "untracked",
+    about = "gitrack",
     version = env!("CARGO_PKG_VERSION"),
     author = "Containerscrew info@containerscrew.com",
     about = "Inspect your untracked local Git files",
@@ -28,15 +27,4 @@ pub struct Args {
         required = false,
     )]
     pub summary: bool,
-}
-
-
-fn default_home_dir() -> String {
-    match home::home_dir() {
-        Some(path) if !path.as_os_str().is_empty() => path.display().to_string(),
-        _ => {
-            println!("{}", "Could not find home directory, using root '/'".red());
-            "/".to_string()
-        }
-    }
 }

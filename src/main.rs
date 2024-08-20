@@ -6,6 +6,7 @@ use crate::git_ops::{check_untracked_files, find_git_repos};
 
 mod cli;
 mod git_ops;
+mod utils;
 
 // Macro print orange
 macro_rules! println_orange {
@@ -25,18 +26,15 @@ fn main() {
     // Init the CLI using clap
     let args = Args::parse();
 
-    println!("{}", "-----> Starting gitrack <-----".green());
+    println!("{}", "----->  Starting gitrack  <-----".green());
 
+    // Find .git repos in the given path
     let start_path = Path::new(&args.path);
     let git_repos = find_git_repos(start_path);
 
-    match git_repos.is_empty() {
-        true => println_orange!("No git repos found in {}", start_path.display()),
-        false => (),
-    }
-
     let mut results = Vec::new();
 
+    // For every repo, check for untracked files
     for repo_path in &git_repos {
         match check_untracked_files(&repo_path) {
             Ok(untracked_files) => {
@@ -48,10 +46,12 @@ fn main() {
         }
     }
 
-    print_results(results, args.summary);
+    // Print the results, if any
+    match results.is_empty() {
+        true => println_orange!("-----> No git repos found in {}", start_path.display()),
+        false => print_results(results, args.summary),
+    }
 }
-
-
 
 fn print_results(results: Vec<(PathBuf, Vec<String>)>, summary: bool) {
     for (repo_path, untracked_files) in results {

@@ -41,11 +41,11 @@ gitrack -s # remember without -p will scan your home folder
 
 Scan personal folder summarized:
 
-![example1](./example1.png)
+![example1](img/example1.png)
 
 Scan specific folder with details:
 
-![example2](./example2.png)
+![example2](img/example2.png)
 
 # TODO
 
