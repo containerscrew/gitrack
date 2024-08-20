@@ -37,7 +37,7 @@ jobs:
 
       - name: Install dependencies
         if: matrix.platform.os == 'ubuntu-latest'
-        run: sudo apt-get -qq install pkg-config libssl-dev
+        run: sudo apt-get -qq install pkg-config libssl-dev musl-gcc
 
       - name: Build binary
         uses: houseabsolute/actions-rust-cross@v0
