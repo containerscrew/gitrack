@@ -15,11 +15,11 @@ jobs:
     strategy:
       matrix:
         platform:
-          - release_for: Windows-x86_64
-            os: windows-latest
-            target: x86_64-pc-windows-msvc
-            bin: gitrack.exe
-            name: gitrack-Windows-x86_64.zip
+          - release_for: linux-amd64
+            os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+            bin: gitrack
+#            name: gitrack-Windows-x86_64.zip
             command: build
 
           - release_for: macOS-x86_64
@@ -35,6 +35,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup MUSL
+        if: matrix.platform.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get -qq install musl-tools
 
       - name: Build binary
         uses: houseabsolute/actions-rust-cross@v0
