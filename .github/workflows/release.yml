@@ -11,30 +11,64 @@ on:
 
 jobs:
   release:
-    name: Release for ${{ matrix.platform.target }}
-    runs-on: ubuntu-latest
+    name: Release - ${{ matrix.platform.release_for }}
     strategy:
       matrix:
         platform:
-          - { target: aarch64-unknown-linux-gnu, os: ubuntu-latest }
-          - { target: x86_64-unknown-linux-musl, os: ubuntu-latest }
-#          - { target: x86_64-pc-windows-gnu, os: windows-latest }
-#          - { target: aarch64-pc-windows-gnu, os: windows-latest }
-#          - { target: x86_64-apple-darwin, os: macos-latest }
-#          - { target: aarch64-apple-darwin, os: macos-latest }
-#    runs-on: ${{ matrix.platform.os }}
+          - release_for: Windows-x86_64
+            os: windows-latest
+            target: x86_64-pc-windows-msvc
+            bin: gitrack.exe
+            name: gitrack-Windows-x86_64.zip
+            command: build
+
+          - release_for: macOS-x86_64
+            os: macOS-latest
+            target: x86_64-apple-darwin
+            bin: gitrack
+            name: gitrack-Darwin-x86_64.tar.gz
+            command: build
+
+            # more release targets here ...
+
+    runs-on: ${{ matrix.platform.os }}
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Build binary
+        uses: houseabsolute/actions-rust-cross@v0
+        with:
+          command: ${{ matrix.platform.command }}
+          target: ${{ matrix.platform.target }}
+          args: "--locked --release"
+          strip: true
 
-      - name: Setup up Rust
-        run:  rustup update stable && rustup default stable
-
-      - name: Install cross
-        run: cargo install cross --git https://github.com/cross-rs/cross
-
-      - name: Build
-        run: cross build --release --target ${{ matrix.platform.target }}
+#  release:
+#    name: Release for ${{ matrix.platform.target }}
+#    runs-on: ubuntu-latest
+#    strategy:
+#      matrix:
+#        platform:
+#          - { target: aarch64-unknown-linux-gnu, os: ubuntu-latest }
+#          - { target: x86_64-unknown-linux-musl, os: ubuntu-latest }
+##          - { target: x86_64-pc-windows-gnu, os: windows-latest }
+##          - { target: aarch64-pc-windows-gnu, os: windows-latest }
+##          - { target: x86_64-apple-darwin, os: macos-latest }
+##          - { target: aarch64-apple-darwin, os: macos-latest }
+##    runs-on: ${{ matrix.platform.os }}
+#    steps:
+#      - name: Checkout code
+#        uses: actions/checkout@v4
+#
+#      - name: Setup up Rust
+#        run:  rustup update stable && rustup default stable
+#
+#      - name: Install cross
+#        run: cargo install cross --git https://github.com/cross-rs/cross
+#
+#      - name: Build
+#        run: cross build --release --target ${{ matrix.platform.target }}
 
 #      - name: Add Rust target
 #        run: rustup target add ${{ matrix.platform.target }}
