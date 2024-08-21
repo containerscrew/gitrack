@@ -4,6 +4,7 @@ version = "1.0.0"
 edition = "2021"
 authors = ["containerscrew info@containerscrew.com"]
 repository = "https://github.com/containerscrew/gitrack"
+rust-version = "1.80.1"
 
 [dependencies]
 clap = { version = "4.5.11", features = ["derive"] }
