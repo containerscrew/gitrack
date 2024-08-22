@@ -4,7 +4,7 @@ use cli::Args;
 use colored::*;
 use std::path::Path;
 use std::sync::mpsc;
-use std::thread;
+use threadpool::ThreadPool;
 
 mod cli;
 mod git_ops;
@@ -35,13 +35,18 @@ fn main() {
     let start_path = Path::new(&args.path);
     let git_repos = find_git_repos(start_path);
 
+    // Create a thread pool with a limited number of threads
+    let num_threads: usize = args.workers as usize;
+    let pool = ThreadPool::new(num_threads);
+
     // Create a channel to send the results back to the main thread
     let (tx, rx) = mpsc::channel();
 
     // Spawn a thread for each repo to check for untracked files
     for repo_path in git_repos {
         let tx = tx.clone();
-        thread::spawn(move || {
+        let repo_path = repo_path.clone();
+        pool.execute(move || {
             match check_untracked_files(&repo_path) {
                 Ok(untracked_files) => {
                     if !untracked_files.is_empty() {

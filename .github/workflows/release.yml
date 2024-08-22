@@ -6,8 +6,8 @@ permissions:
 
 on:
   push:
-#    tags:
-#      - 'v*.*.*'
+    tags:
+      - 'v*.*.*'
 
 env:
   CARGO_TERM_COLOR: always
@@ -33,10 +33,6 @@ jobs:
           - release_for: darwin-arm64
             os: macOS-latest
             target: aarch64-apple-darwin
-
-#          - release_for: windows-amd64
-#            os: windows-latest
-#            target: x86_64-pc-windows-msvc
 
     runs-on: ${{ matrix.platform.os }}
     steps:
@@ -64,86 +60,20 @@ jobs:
           strip: true
 
       - name: Package zip
+#        if: startsWith(github.ref, 'refs/tags/')
         run: |
           make package ARCH=${{ matrix.platform.release_for }} TARGET=${{ matrix.platform.target }} TAG=${{ env.TAG_NAME }}
 
       - name: Release
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
+#        if: startsWith(github.ref, 'refs/tags/')
         with:
+          body: '[Changelog](https://github.com/containerscrew/gitrack/blob/main/CHANGELOG.md)'
           files: |
             CHANGELOG.md
             LICENSE
+            *.zip
         env:
           token: ${{ secrets.RELEASE_TOKEN }}
           generate_release_notes: true
           append_body: true
-          draft: true #for testing
-
-#      - name: Release Linux
-#        if: matrix.platform.os == 'ubuntu-latest'
-#        run: |
-#          sudo apt-get -qq install musl-dev musl-tools pkg-config aarch64-linux-gnu-gcc
-#          cargo build --locked --release --target=${{ matrix.platform.target }}
-#          make package ARCH=${{ matrix.platform.release_for }} TARGET=${{ matrix.platform.target }} TAG=${{ env.TAG_NAME }}
-#
-#      - name: Release MacOS
-#        if: matrix.platform.os == 'macOS-latest'
-#        run: |
-#          rustup target add ${{ matrix.platform.target }}
-#          cargo build --locked --release --target=${{ matrix.platform.target }}
-
-#      - name: Build for Windows
-#        if: matrix.platform.os == 'windows-latest'
-#        run: |
-#          cargo build --locked --release --target=${{ matrix.platform.target }}
-
-#  release:
-#    name: Release - ${{ matrix.os }}
-#    strategy:
-#      matrix:
-#        os: [macos-latest, ubuntu-latest, windows-latest]
-#    runs-on: ${{ matrix.os }}
-#    steps:
-##      - name: Set container tag
-##        id: set_tag
-##        run: |
-##          # Extract the tag name from the full reference
-##          IMAGE_TAG=$(echo "${{ github.ref }}" | sed 's|.*/||')
-##          echo "IMAGE_TAG=$IMAGE_TAG" >> "$GITHUB_ENV"
-#
-#      - name: Setup Rust
-#        uses: dtolnay/rust-toolchain@v1
-#        with:
-#          toolchain: 1.80.1
-#
-#      - name: Checkout
-#        uses: actions/checkout@v4
-#
-#      - name: Linux setup dependencies
-#        if: matrix.os == 'ubuntu-latest'
-#        run: |
-#          rustup target add x86_64-unknown-linux-musl
-#          sudo apt-get -qq install musl-dev musl-tools pkg-config make
-#
-#      - name: MacOS setup dependencies
-#        if: matrix.os == 'macOS-latest'
-#        run: |
-#          rustup target add aarch64-apple-darwin
-#          rustup target add x86_64-apple-darwin
-#
-#      - name: Linux release
-#        if: matrix.os == 'ubuntu-latest'
-#        run: |
-#          cargo build --locked --release --target=x86_64-unknown-linux-musl
-#
-#      - name: MacOS release
-#        if: matrix.os == 'macOS-latest'
-#        run: |
-#          cargo build --locked --release --target=x86_64-apple-darwin
-#          cargo build --locked --release --target=aarch64-apple-darwin
-#
-#      - name: Build for Windows
-#        if: matrix.os == 'windows-latest'
-#        run: |
-#          cargo build --locked --release --target=x86_64-pc-windows-msvc

@@ -3,8 +3,6 @@ name: Test 🤖
 on:
   pull_request:
   push:
-    branches:
-      - main
 
 env:
   CARGO_TERM_COLOR: always
@@ -21,9 +19,6 @@ jobs:
           - os: macOS-latest
             rust: stable
             target: x86_64-apple-darwin
-#          - os: windows-latest
-#            rust: stable
-#            target: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4

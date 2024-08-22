@@ -50,6 +50,23 @@ gitrack -p /my/folder/path -s
 gitrack -s # remember without -p will scan your home folder
 ```
 
+Number of workers/threads:
+
+```bash
+gitrack -p /home/elliot -w 3
+```
+
+# Threads
+
+> The use of threads is not really necessary in this type of tools, unless you have a very large file/folder system. Adding threads does not mean always better performance. I have included them in order to practice their use. **Max 5 threads, default 3**
+
+# Local container
+
+```bash
+cd gitrack/
+docker run -it --rm -w /app -h gitrack --name gitrack -v $PWD:/app docker.io/rust:1.80.1-slim-bullseye 
+```
+
 # Example
 
 Scan personal folder summarized:
@@ -63,7 +80,6 @@ Scan specific folder with details:
 # TODO
 
 * Implement git commit scan for sensitive data using regex. Just for fun. Like gitleaks does.
-* Compile the binary for linux/darwin arm64/amd64.
 * Support diff files.
 * Control threads
 

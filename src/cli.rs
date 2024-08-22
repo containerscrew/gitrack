@@ -1,6 +1,7 @@
 use crate::utils::default_home_dir;
 use clap::Parser;
 
+
 #[derive(Parser, Debug)]
 #[clap(
     about = "gitrack",
@@ -27,4 +28,14 @@ pub struct Args {
         required = false
     )]
     pub summary: bool,
+
+    #[arg(
+        short = 'w',
+        long = "workers",
+        help = "Number of threads to use for scanning repositories",
+        default_value_t = 3,
+        value_parser(clap::value_parser!(u16).range(1..=5)),
+        required = false
+    )]
+    pub workers: u16,
 }
