@@ -11,81 +11,30 @@ on:
 
 jobs:
   release:
-    name: Release - ${{ matrix.platform.release_for }}
+
     strategy:
       matrix:
-        platform:
-          - release_for: linux-amd64
-            os: ubuntu-latest
-            target: x86_64-unknown-linux-musl
-            bin: gitrack
-#            name: gitrack-Windows-x86_64.zip
-            command: build
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        rust: [stable]
 
-          - release_for: macOS-x86_64
-            os: macOS-latest
-            target: x86_64-apple-darwin
-            bin: gitrack
-            name: gitrack-Darwin-x86_64.tar.gz
-            command: build
+    runs-on: ${{ matrix.os }}
 
-            # more release targets here ...
-
-    runs-on: ${{ matrix.platform.os }}
     steps:
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup MUSL
-        if: matrix.platform.os == 'ubuntu-latest'
+      - name: Setup dependencies
+        if: matrix.os == 'ubuntu-latest'
         run: |
+          rustup target add x86_64-unknown-linux-musl
           sudo apt-get -qq install musl-tools
 
-      - name: Build binary
-        uses: houseabsolute/actions-rust-cross@v0
-        with:
-          command: ${{ matrix.platform.command }}
-          target: ${{ matrix.platform.target }}
-          args: "--release"
-          strip: true
-
-#  release:
-#    name: Release for ${{ matrix.platform.target }}
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        platform:
-#          - { target: aarch64-unknown-linux-gnu, os: ubuntu-latest }
-#          - { target: x86_64-unknown-linux-musl, os: ubuntu-latest }
-##          - { target: x86_64-pc-windows-gnu, os: windows-latest }
-##          - { target: aarch64-pc-windows-gnu, os: windows-latest }
-##          - { target: x86_64-apple-darwin, os: macos-latest }
-##          - { target: aarch64-apple-darwin, os: macos-latest }
-##    runs-on: ${{ matrix.platform.os }}
-#    steps:
-#      - name: Checkout code
-#        uses: actions/checkout@v4
-#
-#      - name: Setup up Rust
-#        run:  rustup update stable && rustup default stable
-#
-#      - name: Install cross
-#        run: cargo install cross --git https://github.com/cross-rs/cross
-#
-#      - name: Build
-#        run: cross build --release --target ${{ matrix.platform.target }}
-
-#      - name: Add Rust target
-#        run: rustup target add ${{ matrix.platform.target }}
-#
-#      - name: Setup dependencies
-#        if: matrix.platform.os == 'ubuntu-latest'
-#        run: |
-#          sudo apt-get -qq install musl-tools libssl-dev pkg-config gcc
-#
-##      - name: Install dependencies for Windows
-##        if: matrix.platform.os == 'windows-latest'
-##        run: choco install mingw
-#
-#      - name: Build
-#        run: cargo build --release --target ${{ matrix.target.target }}
+      - name: Linux release
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          cargo build --locked --release --target=x86_64-unknown-linux-musl
