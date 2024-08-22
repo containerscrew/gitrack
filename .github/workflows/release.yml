@@ -6,8 +6,8 @@ permissions:
 
 on:
   push:
-#    tags:
-#      - 'v*.*.*'
+    tags:
+      - 'v*.*.*'
 
 env:
   CARGO_TERM_COLOR: always
@@ -60,13 +60,13 @@ jobs:
           strip: true
 
       - name: Package zip
-        if: startsWith(github.ref, 'refs/tags/')
+#        if: startsWith(github.ref, 'refs/tags/')
         run: |
           make package PLATFORM=${{ matrix.platform.release_for }} TARGET=${{ matrix.platform.target }}
 
       - name: Release
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
+#        if: startsWith(github.ref, 'refs/tags/')
         with:
 #          body: '[Changelog](https://github.com/containerscrew/gitrack/blob/main/CHANGELOG.md)'
           files: |
