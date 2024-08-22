@@ -7,6 +7,15 @@ All notable changes to this project will be documented in this file.
 - Edit release stage
 
 
+- Update CHANGELOG.md for release
+
+
+- Edit changelog stage
+
+
+- Update README
+
+
 ## [1.0.0] - 2024-08-22
 
 - Initial commit
