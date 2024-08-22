@@ -6,8 +6,8 @@ permissions:
 
 on:
   push:
-#    tags:
-#      - 'v*.*.*'
+    tags:
+      - 'v*.*.*'
 
 jobs:
   release:
@@ -31,9 +31,9 @@ jobs:
             os: macOS-latest
             target: aarch64-apple-darwin
 
-          - release_for: windows-amd64
-            os: windows-latest
-            target: x86_64-pc-windows-msvc
+#          - release_for: windows-amd64
+#            os: windows-latest
+#            target: x86_64-pc-windows-msvc
 
     runs-on: ${{ matrix.platform.os }}
     steps:
@@ -49,7 +49,8 @@ jobs:
         if: matrix.platform.os == 'ubuntu-latest'
         run: |
           rustup target add $${{ matrix.platform.target }}
-          sudo apt-get -qq install musl-dev musl-tools pkg-config make
+          sudo apt-get -qq install musl-dev musl-tools pkg-config
+#          make package ARCH=${{ matrix.platform.release_for }} TARGET=${{ matrix.platform.target }} TAG=${{ env.IMAGE_TAG }}
 
       - name: Release MacOS
         if: matrix.platform.os == 'macOS-latest'
@@ -57,10 +58,10 @@ jobs:
           rustup target add ${{ matrix.platform.target }}
           cargo build --locked --release --target=${{ matrix.platform.target }}
 
-      - name: Build for Windows
-        if: matrix.platform.os == 'windows-latest'
-        run: |
-          cargo build --locked --release --target=${{ matrix.platform.target }}
+#      - name: Build for Windows
+#        if: matrix.platform.os == 'windows-latest'
+#        run: |
+#          cargo build --locked --release --target=${{ matrix.platform.target }}
 
 #  release:
 #    name: Release - ${{ matrix.os }}
