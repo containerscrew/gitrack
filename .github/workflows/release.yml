@@ -17,12 +17,12 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Set container tag
-        id: set_tag
-        run: |
-          # Extract the tag name from the full reference
-          IMAGE_TAG=$(echo "${{ github.ref }}" | sed 's|.*/||')
-          echo "IMAGE_TAG=$IMAGE_TAG" >> "$GITHUB_ENV"
+#      - name: Set container tag
+#        id: set_tag
+#        run: |
+#          # Extract the tag name from the full reference
+#          IMAGE_TAG=$(echo "${{ github.ref }}" | sed 's|.*/||')
+#          echo "IMAGE_TAG=$IMAGE_TAG" >> "$GITHUB_ENV"
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@v1
