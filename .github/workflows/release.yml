@@ -11,14 +11,12 @@ on:
 
 jobs:
   release:
-
+    name: Release - ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest] #macOS-latest, windows-latest]
         rust: [stable]
-
     runs-on: ${{ matrix.os }}
-
     steps:
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@v1
@@ -32,7 +30,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           rustup target add x86_64-unknown-linux-musl
-          sudo apt-get -qq install musl-tools
+          sudo apt-get -qq install musl-tools pkg-config libssl-dev
 
       - name: Linux release
         if: matrix.os == 'ubuntu-latest'
