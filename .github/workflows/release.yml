@@ -89,6 +89,9 @@ jobs:
           rustup default stable
           cargo install git-cliff
 
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Update CHANGELOG.md in main branch
 #        if: github.ref == 'refs/tags/v*.*.*'
         run: |
