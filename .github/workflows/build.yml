@@ -20,4 +20,4 @@ jobs:
           targets: x86_64-unknown-linux-musl
 
       - name: Run build
-        run: cargo build --release --locked
+        run: cargo build --release --locked --target x86_64-unknown-linux-musl

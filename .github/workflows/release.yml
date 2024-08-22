@@ -18,10 +18,17 @@ jobs:
         rust: [stable]
     runs-on: ${{ matrix.os }}
     steps:
+      - name: Set container tag
+        id: set_tag
+        run: |
+          # Extract the tag name from the full reference
+          IMAGE_TAG=$(echo "${{ github.ref }}" | sed 's|.*/||')
+          echo "IMAGE_TAG=$IMAGE_TAG" >> "$GITHUB_ENV"
+
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@v1
         with:
-          toolchain: ${{ matrix.rust }}
+          toolchain: 1.80.1
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,7 +37,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           rustup target add x86_64-unknown-linux-musl
-          sudo apt-get -qq install musl-tools pkg-config libssl-dev
+          sudo apt-get -qq install musl-dev musl-tools pkg-config make
 
       - name: MacOS setup dependencies
         if: matrix.os == 'macOS-latest'
@@ -38,13 +45,18 @@ jobs:
           rustup target add aarch64-apple-darwin
           rustup target add x86_64-apple-darwin
 
-#      - name: Linux release
-#        if: matrix.os == 'ubuntu-latest'
-#        run: |
-#          cargo build --locked --release --target=x86_64-unknown-linux-musl
+      - name: Linux release
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          cargo build --locked --release --target=x86_64-unknown-linux-musl
 
       - name: MacOS release
         if: matrix.os == 'macOS-latest'
         run: |
           cargo build --locked --release --target=x86_64-apple-darwin
           cargo build --locked --release --target=aarch64-apple-darwin
+
+      - name: Build for Windows
+        if: matrix.os == 'windows-latest'
+        run: |
+          cargo build --locked --release --target=x86_64-pc-windows-msvc
