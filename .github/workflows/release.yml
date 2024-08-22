@@ -41,6 +41,7 @@ jobs:
         uses: dtolnay/rust-toolchain@v1
         with:
           toolchain: 1.80.1
+          targets: ${{ matrix.platform.target }}
 
       - name: Checkout
         uses: actions/checkout@v4
@@ -55,8 +56,8 @@ jobs:
       - name: Release Linux
         if: matrix.platform.os == 'ubuntu-latest'
         run: |
-          rustup target add ${{ matrix.platform.target }}
           sudo apt-get -qq install musl-dev musl-tools pkg-config
+          cargo build --locked --release --target=${{ matrix.platform.target }}
           make package ARCH=${{ matrix.platform.release_for }} TARGET=${{ matrix.platform.target }} TAG=${{ env.TAG_NAME }}
 
       - name: Release MacOS
