@@ -60,7 +60,17 @@ gitrack -p /home/elliot -w 3
 
 > The use of threads is not really necessary in this type of tools, unless you have a very large file/folder system. Adding threads does not mean always better performance. I have included them in order to practice their use. **Max 5 threads, default 3**
 
-# Local container
+
+# Dev
+
+## pre-commit
+
+```bash
+cd gitrack/
+pre-commit install
+```
+
+## Local container
 
 ```bash
 cd gitrack/
@@ -76,6 +86,7 @@ Scan personal folder summarized:
 Scan specific folder with details:
 
 ![example2](img/example2.png)
+
 
 # TODO
 
