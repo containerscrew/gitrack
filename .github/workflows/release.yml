@@ -9,6 +9,9 @@ on:
     tags:
       - 'v*.*.*'
 
+env:
+  CARGO_TERM_COLOR: always
+
 jobs:
   release:
     name: Release - ${{ matrix.platform.release_for }}
