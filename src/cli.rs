@@ -1,7 +1,6 @@
 use crate::utils::default_home_dir;
 use clap::Parser;
 
-
 #[derive(Parser, Debug)]
 #[clap(
     about = "gitrack",

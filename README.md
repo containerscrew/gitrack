@@ -64,7 +64,7 @@ gitrack -p /home/elliot -w 3
 
 ```bash
 cd gitrack/
-docker run -it --rm -w /app -h gitrack --name gitrack -v $PWD:/app docker.io/rust:1.80.1-slim-bullseye 
+docker run -it --rm -w /app -h gitrack --name gitrack -v $PWD:/app docker.io/rust:1.80.1-slim-bullseye
 ```
 
 # Example
