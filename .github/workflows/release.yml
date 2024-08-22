@@ -94,6 +94,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set tag
+        id: set_tag
+        run: |
+          # Extract the tag name from the full reference
+          TAG_NAME=$(echo "${{ github.ref }}" | sed 's|.*/||')
+          echo "TAG_NAME=$TAG_NAME" >> "$GITHUB_ENV"
+
       - name: Update CHANGELOG.md in main branch
 #        if: github.ref == 'refs/tags/v*.*.*'
         run: |
