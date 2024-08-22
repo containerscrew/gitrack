@@ -45,12 +45,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Set tag
+        id: set_tag
+        run: |
+          # Extract the tag name from the full reference
+          TAG_NAME=$(echo "${{ github.ref }}" | sed 's|.*/||')
+          echo "TAG_NAME=$TAG_NAME" >> "$GITHUB_ENV"
+
       - name: Release Linux
         if: matrix.platform.os == 'ubuntu-latest'
         run: |
-          rustup target add $${{ matrix.platform.target }}
+          rustup target add ${{ matrix.platform.target }}
           sudo apt-get -qq install musl-dev musl-tools pkg-config
-#          make package ARCH=${{ matrix.platform.release_for }} TARGET=${{ matrix.platform.target }} TAG=${{ env.IMAGE_TAG }}
+          make package ARCH=${{ matrix.platform.release_for }} TARGET=${{ matrix.platform.target }} TAG=${{ env.TAG_NAME }}
 
       - name: Release MacOS
         if: matrix.platform.os == 'macOS-latest'
