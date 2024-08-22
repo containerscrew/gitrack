@@ -59,7 +59,7 @@ jobs:
       - name: Release Linux
         if: matrix.platform.os == 'ubuntu-latest'
         run: |
-          sudo apt-get -qq install musl-dev musl-tools pkg-config
+          sudo apt-get -qq install musl-dev musl-tools pkg-config aarch64-linux-gnu-gcc
           cargo build --locked --release --target=${{ matrix.platform.target }}
           make package ARCH=${{ matrix.platform.release_for }} TARGET=${{ matrix.platform.target }} TAG=${{ env.TAG_NAME }}
 
