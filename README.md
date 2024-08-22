@@ -13,6 +13,20 @@ Easy and simple.
 
 # Installation
 
+## Install latest version
+
+```shell
+curl --proto '=https' --tlsv1.2 -sSfL https://raw.githubusercontent.com/containerscrew/gitrack/main/install.sh | sh
+```
+
+## Install specific release
+
+```shell
+curl --proto '=https' --tlsv1.2 -sSfL https://raw.githubusercontent.com/containerscrew/gitrack/main/install.sh | sh -s -- -v "v0.8.0"
+```
+
+## Using cargo
+
 * **[Install Cargo](https://rustup.rs/)**
 
 Open a terminal and run:
@@ -24,6 +38,12 @@ make install
 ```
 
 # Uninstall
+
+```bash
+sudo rm /usr/local/bin/gitrack
+```
+
+With cargo:
 
 ```shell
 make uninstall
