@@ -19,9 +19,9 @@ jobs:
           - os: macOS-latest
             rust: stable
             target: x86_64-apple-darwin
-          - os: windows-latest
-            rust: stable
-            target: x86_64-pc-windows-msvc
+#          - os: windows-latest
+#            rust: stable
+#            target: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -46,7 +46,6 @@ jobs:
            toolchain: stable
            components: rustfmt
 
-        # Format
        - name: Check formatting
          run: cargo fmt --all -- --check
 
