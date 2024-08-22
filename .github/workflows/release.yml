@@ -78,6 +78,17 @@ jobs:
           generate_release_notes: true
           append_body: true
 
+  changelog:
+    name: Generate CHANGELOG
+    needs:
+      - release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install git cliff
+        run: |
+          rustup default stable
+          cargo install git-cliff
+
       - name: Update CHANGELOG.md in main branch
 #        if: github.ref == 'refs/tags/v*.*.*'
         run: |
