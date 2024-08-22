@@ -14,7 +14,7 @@ jobs:
     name: Release - ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest] #macOS-latest, windows-latest]
+        os: [macos-latest] #ubuntu-latest, windows-latest]
         rust: [stable]
     runs-on: ${{ matrix.os }}
     steps:
@@ -26,13 +26,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup dependencies
+      - name: Linux setup dependencies
         if: matrix.os == 'ubuntu-latest'
         run: |
           rustup target add x86_64-unknown-linux-musl
           sudo apt-get -qq install musl-tools pkg-config libssl-dev
 
-      - name: Linux release
-        if: matrix.os == 'ubuntu-latest'
+      - name: MacOS setup dependencies
+        if: matrix.os == 'macOS-latest'
         run: |
-          cargo build --locked --release --target=x86_64-unknown-linux-musl
+          rustup target add aarch64-apple-darwin
+          rustup target add x86_64-apple-darwin
+
+#      - name: Linux release
+#        if: matrix.os == 'ubuntu-latest'
+#        run: |
+#          cargo build --locked --release --target=x86_64-unknown-linux-musl
+
+      - name: MacOS release
+        if: matrix.os == 'macOS-latest'
+        run: |
+          cargo build --locked --release --target=x86_64-apple-darwin
+          cargo build --locked --release --target=aarch64-apple-darwin
