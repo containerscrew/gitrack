@@ -9,7 +9,7 @@ happyexit(){
   echo ""
   echo "gitrack successfully installed! 🎉"
   echo ""
-  echo "Now run: $ gitrack usage"
+  echo "Now run: $ gitrack --help"
   echo ""
   exit 0
 }
@@ -64,20 +64,20 @@ download_release() {
   LATEST_VERSION=$(curl -s https://api.github.com/repos/containerscrew/gitrack/releases/latest | jq -r ".name")
   if [ -z "$1" ]; then VERSION=$LATEST_VERSION; else VERSION=$1; fi
 
-  printf "\033[0;32m[info] - Downloading version: ${VERSION}/tftools-${OS}-${cli_arch}.tar.gz \033[0m\n"
-  curl -L --fail --remote-name-all https://github.com/containerscrew/tftools/releases/download/"${VERSION}"/tftools-"${OS}"-"${cli_arch}".tar.gz -o /tmp/tftools.tar.gz
-  tar -xzf /tmp/tftools.tar.gz -C /tmp/
+  printf "\033[0;32m[info] - Downloading version: ${VERSION}/gitrack-${OS}-${cli_arch}.zip \033[0m\n"
+  curl -L --fail --remote-name-all https://github.com/containerscrew/gitrack/releases/download/"${VERSION}"/gitrack-"${OS}"-"${cli_arch}".zip -o /tmp/gitrack.zip
+  unzip -o /tmp/gitrack.zip -d /tmp/
 }
 
 install_binary(){
   if [ "$(id -u)" = 0 ]; then
-      cp /tmp/tftools $INSTALLATION_PATH
-      chmod +x $INSTALLATION_PATH/tftools
+      cp /tmp/gitrack $INSTALLATION_PATH
+      chmod +x $INSTALLATION_PATH/gitrack
   else
-      sudo cp /tmp/tftools $INSTALLATION_PATH
-      sudo chmod +x $INSTALLATION_PATH/tftools
+      sudo cp /tmp/gitrack $INSTALLATION_PATH
+      sudo chmod +x $INSTALLATION_PATH/gitrack
   fi
-  rm -rf /tmp/tftools*
+  rm -rf /tmp/gitrack*
   happyexit
 }
 
