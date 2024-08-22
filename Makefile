@@ -11,7 +11,7 @@ pre-commit: ## Run pre-commit
 	pre-commit run -a
 
 package: ## Package binary with zip
-	zip -j ${BINARY_NAME}-$(ARCH)-$(TAG).zip target/$(TARGET)/release/${BINARY_NAME}
+	zip -j ${BINARY_NAME}-$(PLATFORM).zip target/$(TARGET)/release/${BINARY_NAME}
 
 generate-changelog: ## Generate changelog using git cliff
 	git cliff --output CHANGELOG.md
