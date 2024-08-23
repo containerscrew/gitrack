@@ -3,6 +3,8 @@ name: Test 🤖
 on:
   pull_request:
   push:
+    paths:
+      - 'src/**'
     branches:
       - '**'
 
