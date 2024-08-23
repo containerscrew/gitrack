@@ -25,9 +25,11 @@
   - [pre-commit](#pre-commit)
   - [Local container](#local-container)
 - [Examples](#examples)
-  - [Scan personal folder summarized](#scan-personal-folder-summarized)
-  - [Scan specific folder with details](#scan-specific-folder-with-details)
+  - [Scan folder containing git repositories](#scan-folder-containing-git-repositories)
+  - [Scan untracked repositories](#scan-untracked-repositories)
+  - [Scan untracked repositories with verbose](#scan-untracked-repositories-with-verbose)
   - [Diff files](#diff-files)
+  - [Exclude directories](#exclude-directories)
 - [TODO](#todo)
 - [License](#license)
 
@@ -185,17 +187,25 @@ docker run -it --rm -w /app -h gitrack --name gitrack -v $PWD:/app docker.io/rus
 
 # Examples
 
-## Scan personal folder summarized
+## Scan folder containing git repositories
 
 ![example1](img/example1.png)
 
-## Scan specific folder with details
+## Scan untracked repositories
 
 ![example2](img/example2.png)
 
-## Diff files
+## Scan untracked repositories with verbose
 
 ![example3](img/example3.png)
+
+## Diff files
+
+![example4](img/example4.png)
+
+## Exclude directories
+
+![example5](img/example5.png)
 
 # TODO
 
