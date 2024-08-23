@@ -62,7 +62,7 @@ fn process_repo(repo_path: &PathBuf, args: &Args) {
 }
 
 /// Handle the display of untracked files
-fn handle_untracked_files(repo_path: &PathBuf, untracked_files: &[String], args: &Args) {
+fn handle_untracked_files(repo_path: &Path, untracked_files: &[String], args: &Args) {
     if !untracked_files.is_empty() {
         println_orange!("Untracked files in: {}", repo_path.display());
         for file in untracked_files {
