@@ -24,3 +24,6 @@ install: ## Install binary
 
 uninstall: ## Uninstall binary
 	cargo uninstall ${BINARY_NAME}
+
+build: ## Build binary
+	cargo build --release --locked
