@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+- Change README examples
+
+
+- Update README
+
+
+## [1.1.0] - 2024-08-23
+
 - Edit release stage
 
 
@@ -14,6 +22,15 @@ All notable changes to this project will be documented in this file.
 
 
 - Update README
+
+
+- Generate CHANGELOG
+
+
+- Add diff and exclude dir features
+
+
+- New release v1.1.0
 
 
 ## [1.0.0] - 2024-08-22
