@@ -138,7 +138,6 @@ Scan specific folder with details:
 # TODO
 
 * Implement git commit scan for sensitive data using regex. Just for fun. Like gitleaks does.
-* Exclude directories
 
 # Links
 
