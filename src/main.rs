@@ -2,7 +2,7 @@ use crate::git_ops::{check_untracked_files, find_git_repos, show_diff};
 use clap::Parser;
 use cli::Args;
 use colored::*;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 
 mod cli;
 mod git_ops;
@@ -46,7 +46,7 @@ fn main() {
 }
 
 /// Process each repository based on command-line arguments
-fn process_repo(repo_path: &PathBuf, args: &Args) {
+fn process_repo(repo_path: &Path, args: &Args) {
     if args.check_untracked {
         match check_untracked_files(repo_path) {
             Ok(untracked_files) => handle_untracked_files(repo_path, &untracked_files, args),
