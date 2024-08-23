@@ -1,8 +1,50 @@
 # gitrack
 
-I have a lot of personal/work repositories in my laptop. Sometimes you jump from change to change and forget to upload the commit. This tool looks for untracked changes in your local folders.
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
 
-Easy and simple.
+- [About](#about)
+- [Badges](#badges)
+- [Supported Platforms](#supported-platforms)
+- [Installation](#installation)
+  - [Install latest version](#install-latest-version)
+  - [Install specific release](#install-specific-release)
+  - [Using cargo](#using-cargo)
+- [Uninstall](#uninstall)
+- [Usage](#usage)
+  - [Help](#help)
+  - [Scan folders containing git repositories](#scan-folders-containing-git-repositories)
+  - [Scanning for untracked changes (summarized)](#scanning-for-untracked-changes-summarized)
+  - [Scanning for untracked changes (verbose)](#scanning-for-untracked-changes-verbose)
+  - [Diff files for untracked changes](#diff-files-for-untracked-changes)
+  - [Control number of workers/threads:](#control-number-of-workersthreads)
+  - [Exclude directories:](#exclude-directories)
+- [About threads](#about-threads)
+- [Dev](#dev)
+  - [pre-commit](#pre-commit)
+  - [Local container](#local-container)
+- [Examples](#examples)
+  - [Scan personal folder summarized](#scan-personal-folder-summarized)
+  - [Scan specific folder with details](#scan-specific-folder-with-details)
+  - [Diff files](#diff-files)
+- [TODO](#todo)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# About
+
+Scan git repositories in your file system. Find untracked changes, diff files, and more.
+
+Easy and simple. This tool was created just for fun and to practice Rust.
+
+Implemented features:
+
+* Scan for untracked changes in git repositories.
+* Scan `.git` folders in your file system (with multithreads).
+* Diff files for untracked changes.
+
 
 # Badges
 
@@ -65,47 +107,65 @@ make uninstall
 
 # Usage
 
+## Help
+
 ```bash
 gitrack --help
+
+Scan git repositories in your file system
+
+Usage: gitrack [OPTIONS]
+
+Options:
+  -p, --path <PATH>               Folder path you want to scan for git untracked files [default: /home/dcr]
+  -w, --workers <WORKERS>         Number of threads to use for scanning repositories [default: 5]
+  -d, --diff                      Show differences between changed files
+  -e, --exclude-dir <EXCLUDE>...  Exclude directories to scan
+  -u, --check-untracked           Only show repositories with untracked files
+  -v, --verbose                   Print verbose output
+  -h, --help                      Print help
+  -V, --version                   Print version
 ```
 
-> By default, it will look for untracked changes in your home folder.
-
-Scanning for untracked changes, specific folder:
+## Scan folders containing git repositories
 
 ```bash
-gitrack -p /my/folder/path
+gitrack -p /home/elliot # home will be always the default values if -p is not provided
 ```
 
-Summarized output:
+## Scanning for untracked changes (summarized)
 
 ```bash
-gitrack -p /my/folder/path -s
-gitrack -s # remember without -p will scan your home folder
+gitrack -p /home/elliot -u
 ```
 
-Number of workers/threads:
+## Scanning for untracked changes (verbose)
 
 ```bash
-gitrack -p /home/elliot -w 3
+gitrack -p /home/elliot -u -v
 ```
 
-Diff file changes:
+## Diff files for untracked changes
 
 ```bash
-gitrack -p /home/elliot/gitrack -d # diff is not compatible with -s (summarized)
+gitrack -p /home/elliot -u -d # without -u, -d will not work
 ```
 
-Exclude directories:
+## Control number of workers/threads:
 
 ```bash
-gitrack -p /home/elliot -s -e "/home/elliot/.cache" -e "/home/elliot/.local"
+gitrack -p /home/elliot -u -w 6
 ```
 
-# Threads
+## Exclude directories:
 
-> The use of threads is not really necessary in this type of tools, unless you have a very large file/folder system. Adding threads does not mean always better performance. I have included them in order to practice their use. **Max 5 threads, default 3**
+```bash
+gitrack -p /home/elliot -e "/home/elliot/.cache" -e "/home/elliot/.local" -u -w 6
+```
 
+# About threads
+
+> The use of threads is not really necessary in this type of tools, unless you have a very large file/folder system. Adding threads does not mean always better performance. I have included them in order to practice their use.
 
 # Dev
 
@@ -123,15 +183,17 @@ cd gitrack/
 docker run -it --rm -w /app -h gitrack --name gitrack -v $PWD:/app docker.io/rust:1.80.1-slim-bullseye
 ```
 
-# Example
+# Examples
 
-Scan personal folder summarized:
+## Scan personal folder summarized
 
 ![example1](img/example1.png)
 
-Scan specific folder with details:
+## Scan specific folder with details
 
 ![example2](img/example2.png)
+
+## Diff files
 
 ![example3](img/example3.png)
 
@@ -139,9 +201,6 @@ Scan specific folder with details:
 
 * Implement git commit scan for sensitive data using regex. Just for fun. Like gitleaks does.
 
-# Links
-
-* [Using cargo in CI](https://doc.rust-lang.org/cargo/guide/continuous-integration.html)
 
 # License
 

@@ -27,3 +27,9 @@ uninstall: ## Uninstall binary
 
 build: ## Build binary
 	cargo build --release --locked
+
+cargo-fix: ## Run cargo fix
+	cargo fix --bin gitrack
+
+doctoc: ## Create table of contents with doctoc
+	doctoc .
