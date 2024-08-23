@@ -1,24 +1,36 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Changelog](#changelog)
-  - [[unreleased]](#unreleased)
-  - [[1.1.0] - 2024-08-23](#110---2024-08-23)
-  - [[1.0.0] - 2024-08-22](#100---2024-08-22)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 # Changelog
 
 All notable changes to this project will be documented in this file.
 
 ## [unreleased]
 
+- Fix linter
+
+
+- Edit pipelines
+
+
+## [2.0.0] - 2024-08-23
+
 - Change README examples
 
 
 - Update README
+
+
+- Update CHANGELOG.md for release v1.1.0
+
+
+- Reimplementing directories scan
+
+
+- Refactor some flags and code
+
+
+- Clippy: change &Path
+
+
+- Update Cargo.toml package version
 
 
 ## [1.1.0] - 2024-08-23
