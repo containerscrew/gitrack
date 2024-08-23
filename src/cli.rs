@@ -21,14 +21,6 @@ pub struct Args {
     pub path: String,
 
     #[arg(
-        short = 's',
-        long = "summary",
-        help = "Show only repositories without listing untracked files",
-        required = false
-    )]
-    pub summary: bool,
-
-    #[arg(
         short = 'w',
         long = "workers",
         help = "Number of threads to use for scanning repositories",
@@ -58,9 +50,20 @@ pub struct Args {
     pub exclude: Option<Vec<String>>,
 
     #[arg(
-        long = "scan-all",
-        help = "Scan all git repos, with or without untracked files",
+        short = 'u',
+        long = "check-untracked",
+        help = "Only show repositories with untracked files",
+        default_value_t = false,
         required = false
     )]
-    pub scan_all: bool,
+    pub check_untracked: bool,
+
+    #[arg(
+        short = 'v',
+        long = "verbose",
+        help = "Print verbose output (untracked files)",
+        default_value_t = false,
+        required = false
+    )]
+    pub verbose: bool,
 }

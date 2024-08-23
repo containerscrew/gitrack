@@ -39,7 +39,41 @@ fn main() {
     let start_path = Path::new(&args.path);
     // If user not specify exclude dirs, set it to empty
     let exclude_dirs = args.exclude.as_deref().unwrap_or(&[]);
-    let git_repos = find_git_repos(start_path, &exclude_dirs, args.workers as usize);
+    let git_repos = find_git_repos(
+        start_path,
+        &exclude_dirs,
+        args.workers as usize,
+        args.check_untracked,
+    );
+
+    // Print results
+    for repo in git_repos {
+        let repo_path = repo.clone();
+        if args.check_untracked {
+            match check_untracked_files(&repo_path) {
+                Ok(untracked_files) => {
+                    if !untracked_files.is_empty() && args.verbose {
+                        println_orange!("Untracked files in: {}", repo.display());
+                        for file in untracked_files {
+                            println_light_orange!("  - {}", file);
+                            if args.diff {
+                                match show_diff(&repo_path, &file) {
+                                    Ok(diff) => println!("{}", diff),
+                                    Err(e) => eprintln!("{}: {}", "Error showing diff".red(), e),
+                                }
+                            }
+                        }
+                    }
+                }
+                Err(e) => {
+                    if args.verbose {
+                        eprintln!("{}: {}", "Error checking repository".red(), e)
+                    }
+                }
+            }
+        }
+        println_orange!("Found git repository: {}", repo.display());
+    }
 
     //
     // // Spawn a thread for each repo to check for untracked files

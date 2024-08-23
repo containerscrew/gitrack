@@ -1,7 +1,8 @@
 use colored::*;
-use git2::{DiffOptions, Repository, StatusOptions};
+use git2::{DiffOptions, Repository, Status, StatusOptions};
 use std::io;
 use std::io::ErrorKind;
+use std::mem::needs_drop;
 use std::path::{Path, PathBuf};
 use std::sync::mpsc;
 use std::sync::mpsc::Sender;
@@ -14,9 +15,9 @@ fn is_excluded_dir(entry: &DirEntry, exclude_dirs: &[String]) -> bool {
 }
 
 // Send the path to the channel if it is a Git repository
-fn check_and_send_repo(path: PathBuf, tx: Sender<PathBuf>) {
+fn check_and_send_repo(path: PathBuf, tx: Sender<PathBuf>, verbose: bool) {
     if path.join(".git").exists() {
-        tx.send(path).unwrap();
+        tx.send((path)).unwrap();
     }
 }
 
@@ -25,6 +26,7 @@ pub fn find_git_repos(
     start_path: &Path,
     exclude_dirs: &[String],
     num_threads: usize,
+    verbose: bool,
 ) -> Vec<PathBuf> {
     let pool = ThreadPool::new(num_threads); // Create a thread pool with the specified number of threads
     let (tx, rx) = mpsc::channel(); // Create a channel to send results from threads to the main thread
@@ -35,7 +37,7 @@ pub fn find_git_repos(
         if path.is_dir() && !is_excluded_dir(&entry, exclude_dirs) {
             let tx = tx.clone(); // Clone the sender to be used in the thread
             pool.execute(move || {
-                check_and_send_repo(path, tx); // Check if the directory is a Git repository and send the path if it is
+                check_and_send_repo(path, tx, verbose); // Check if the directory is a Git repository and send the path if it is
             });
         }
     }
@@ -55,7 +57,7 @@ pub fn check_untracked_files(repo_path: &Path) -> Result<Vec<String>, git2::Erro
     let mut untracked_files = Vec::new();
     for entry in statuses.iter() {
         let status = entry.status();
-        if status.is_index_new() || status.is_wt_new() || status.is_wt_modified() {
+        if status.contains(Status::WT_NEW) {
             let file_path = entry.path().unwrap_or("unknown file").to_string();
             untracked_files.push(file_path);
         }
