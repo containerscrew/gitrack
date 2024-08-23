@@ -1,4 +1,4 @@
-use crate::git_ops::{check_untracked_files, find_git_repos};
+use crate::git_ops::{check_untracked_files, find_git_repos, show_diff};
 use clap::Parser;
 use cli::Args;
 use colored::*;
@@ -29,11 +29,17 @@ fn main() {
     // Initialize the CLI arguments
     let args = Args::parse();
 
-    println!("{}", "----->  Starting gitrack  <-----".green());
+    println!(
+        "{}",
+        "----->  Inspecting your untracked local Git files  <-----".green()
+    );
+    println_orange!("-----> Scanning {}", args.path);
 
     // Find .git repos in the specified path
     let start_path = Path::new(&args.path);
-    let git_repos = find_git_repos(start_path);
+    // If user not specify exclude dirs, set it to empty
+    let exclude_dirs = args.exclude.as_deref().unwrap_or(&[]);
+    let git_repos = find_git_repos(start_path, exclude_dirs);
 
     // Create a thread pool with a limited number of threads
     let num_threads: usize = args.workers as usize;
@@ -70,6 +76,12 @@ fn main() {
         if !args.summary {
             for file in untracked_files {
                 println_light_orange!("  - {}", file);
+                if args.diff {
+                    match show_diff(&repo_path, &file) {
+                        Ok(diff) => println!("{}", diff),
+                        Err(e) => eprintln!("{}: {}", "Error showing diff".red(), e),
+                    }
+                }
             }
         }
     }

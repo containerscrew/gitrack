@@ -37,4 +37,23 @@ pub struct Args {
         required = false
     )]
     pub workers: u16,
+
+    #[arg(
+        short = 'd',
+        long = "diff",
+        help = "Show differences between changed files",
+        default_value_t = false,
+        required = false
+    )]
+    pub diff: bool,
+
+    #[arg(
+        short = 'e',
+        long = "exclude-dir",
+        help = "Exclude directories to scan",
+        value_delimiter = ' ',
+        num_args = 1..,
+        required = false
+    )]
+    pub exclude: Option<Vec<String>>,
 }
