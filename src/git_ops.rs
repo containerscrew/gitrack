@@ -3,27 +3,47 @@ use git2::{DiffOptions, Repository, StatusOptions};
 use std::io;
 use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
+use std::sync::mpsc;
+use std::sync::mpsc::Sender;
+use threadpool::ThreadPool;
 use walkdir::{DirEntry, WalkDir};
 
+// Check if a directory should be excluded
 fn is_excluded_dir(entry: &DirEntry, exclude_dirs: &[String]) -> bool {
     exclude_dirs.iter().any(|dir| entry.path().starts_with(dir))
 }
 
-pub fn find_git_repos(start_path: &Path, exclude_dirs: &[String]) -> Vec<PathBuf> {
-    let mut git_repos = Vec::new();
+// Send the path to the channel if it is a Git repository
+fn check_and_send_repo(path: PathBuf, tx: Sender<PathBuf>) {
+    if path.join(".git").exists() {
+        tx.send(path).unwrap();
+    }
+}
 
-    for entry in WalkDir::new(start_path)
-        .into_iter()
-        .filter_map(|e| e.ok())
-        .filter(|e| !is_excluded_dir(e, exclude_dirs))
-    {
-        let path = entry.path();
-        if path.is_dir() && path.join(".git").exists() {
-            git_repos.push(path.to_path_buf());
+// Find Git repositories starting from a given directory using a ThreadPool
+pub fn find_git_repos(
+    start_path: &Path,
+    exclude_dirs: &[String],
+    num_threads: usize,
+) -> Vec<PathBuf> {
+    let pool = ThreadPool::new(num_threads); // Create a thread pool with the specified number of threads
+    let (tx, rx) = mpsc::channel(); // Create a channel to send results from threads to the main thread
+
+    // Iterate over all entries in the starting path
+    for entry in WalkDir::new(start_path).into_iter().filter_map(|e| e.ok()) {
+        let path = entry.path().to_path_buf();
+        if path.is_dir() && !is_excluded_dir(&entry, exclude_dirs) {
+            let tx = tx.clone(); // Clone the sender to be used in the thread
+            pool.execute(move || {
+                check_and_send_repo(path, tx); // Check if the directory is a Git repository and send the path if it is
+            });
         }
     }
 
-    git_repos
+    drop(tx); // Close the sender side of the channel to indicate no more sends
+
+    // Collect all the paths from the receiver into a vector
+    rx.into_iter().collect()
 }
 
 pub fn check_untracked_files(repo_path: &Path) -> Result<Vec<String>, git2::Error> {

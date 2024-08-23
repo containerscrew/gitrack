@@ -32,8 +32,8 @@ pub struct Args {
         short = 'w',
         long = "workers",
         help = "Number of threads to use for scanning repositories",
-        default_value_t = 3,
-        value_parser(clap::value_parser!(u16).range(1..=5)),
+        default_value_t = 5,
+        value_parser(clap::value_parser!(u16).range(1..=10)),
         required = false
     )]
     pub workers: u16,
@@ -56,4 +56,11 @@ pub struct Args {
         required = false
     )]
     pub exclude: Option<Vec<String>>,
+
+    #[arg(
+        long = "scan-all",
+        help = "Scan all git repos, with or without untracked files",
+        required = false
+    )]
+    pub scan_all: bool,
 }

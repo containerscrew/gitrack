@@ -39,58 +39,52 @@ fn main() {
     let start_path = Path::new(&args.path);
     // If user not specify exclude dirs, set it to empty
     let exclude_dirs = args.exclude.as_deref().unwrap_or(&[]);
-    let git_repos = find_git_repos(start_path, exclude_dirs);
+    let git_repos = find_git_repos(start_path, &exclude_dirs, args.workers as usize);
 
-    // Create a thread pool with a limited number of threads
-    let num_threads: usize = args.workers as usize;
-    let pool = ThreadPool::new(num_threads);
-
-    // Create a channel to send the results back to the main thread
-    let (tx, rx) = mpsc::channel();
-
-    // Spawn a thread for each repo to check for untracked files
-    for repo_path in git_repos {
-        let tx = tx.clone();
-        let repo_path = repo_path.clone();
-        pool.execute(move || {
-            match check_untracked_files(&repo_path) {
-                Ok(untracked_files) => {
-                    if !untracked_files.is_empty() {
-                        // Send the results back to the main thread
-                        tx.send((repo_path.clone(), untracked_files)).unwrap();
-                    }
-                }
-                Err(e) => eprintln!("{}: {}", "Error checking repository".red(), e),
-            }
-        });
-    }
-
-    // Close the sending side of the channel
-    drop(tx);
-
-    // Print the results as they arrive
-    let mut has_results = false;
-    while let Ok((repo_path, untracked_files)) = rx.recv() {
-        has_results = true;
-        println_orange!("Untracked files in: {}", repo_path.display());
-        if !args.summary {
-            for file in untracked_files {
-                println_light_orange!("  - {}", file);
-                if args.diff {
-                    match show_diff(&repo_path, &file) {
-                        Ok(diff) => println!("{}", diff),
-                        Err(e) => eprintln!("{}: {}", "Error showing diff".red(), e),
-                    }
-                }
-            }
-        }
-    }
-
-    // Print a message if no results were found
-    if !has_results {
-        println_orange!(
-            "-----> There are no changes to git in {}",
-            start_path.display()
-        );
-    }
+    //
+    // // Spawn a thread for each repo to check for untracked files
+    // for repo_path in git_repos {
+    //     let tx = tx.clone();
+    //     let repo_path = repo_path.clone();
+    //     pool.execute(move || {
+    //         match check_untracked_files(&repo_path) {
+    //             Ok(untracked_files) => {
+    //                 if !untracked_files.is_empty() {
+    //                     // Send the results back to the main thread
+    //                     tx.send((repo_path.clone(), untracked_files)).unwrap();
+    //                 }
+    //             }
+    //             Err(e) => eprintln!("{}: {}", "Error checking repository".red(), e),
+    //         }
+    //     });
+    // }
+    //
+    // // Close the sending side of the channel
+    // drop(tx);
+    //
+    // // Print the results as they arrive
+    // let mut has_results = false;
+    // while let Ok((repo_path, untracked_files)) = rx.recv() {
+    //     has_results = true;
+    //     println_orange!("Untracked files in: {}", repo_path.display());
+    //     if !args.summary {
+    //         for file in untracked_files {
+    //             println_light_orange!("  - {}", file);
+    //             if args.diff {
+    //                 match show_diff(&repo_path, &file) {
+    //                     Ok(diff) => println!("{}", diff),
+    //                     Err(e) => eprintln!("{}: {}", "Error showing diff".red(), e),
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+    //
+    // // Print a message if no results were found
+    // if !has_results {
+    //     println_orange!(
+    //         "-----> There are no changes to git in {}",
+    //         start_path.display()
+    //     );
+    // }
 }
