@@ -133,6 +133,7 @@ Scan specific folder with details:
 
 ![example2](img/example2.png)
 
+![example3](img/example3.png)
 
 # TODO
 
