@@ -1,9 +1,8 @@
 # gitrack
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
+<!-- START OF TOC !DO NOT EDIT THIS CONTENT MANUALLY-->
+**Table of Contents**  *generated with [mtoc](https://github.com/containerscrew/mtoc)*
+- [gitrack](#gitrack)
 - [About](#about)
 - [Badges](#badges)
 - [Supported Platforms](#supported-platforms)
@@ -15,11 +14,11 @@
 - [Usage](#usage)
   - [Help](#help)
   - [Scan folders containing git repositories](#scan-folders-containing-git-repositories)
-  - [Scanning for untracked changes (summarized)](#scanning-for-untracked-changes-summarized)
-  - [Scanning for untracked changes (verbose)](#scanning-for-untracked-changes-verbose)
+  - [Scanning for untracked changes (summarized)](#scanning-for-untracked-changes-(summarized))
+  - [Scanning for untracked changes (verbose)](#scanning-for-untracked-changes-(verbose))
   - [Diff files for untracked changes](#diff-files-for-untracked-changes)
-  - [Control number of workers/threads:](#control-number-of-workersthreads)
-  - [Exclude directories:](#exclude-directories)
+  - [Control number of workers/threads:](#control-number-of-workers/threads:)
+  - [Exclude directories:](#exclude-directories:)
 - [About threads](#about-threads)
 - [Dev](#dev)
   - [pre-commit](#pre-commit)
@@ -32,8 +31,7 @@
   - [Exclude directories](#exclude-directories)
 - [TODO](#todo)
 - [License](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+<!-- END OF TOC -->
 
 # About
 
