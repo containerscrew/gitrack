@@ -17,8 +17,8 @@
   - [Scanning for untracked changes (summarized)](#scanning-for-untracked-changes-(summarized))
   - [Scanning for untracked changes (verbose)](#scanning-for-untracked-changes-(verbose))
   - [Diff files for untracked changes](#diff-files-for-untracked-changes)
-  - [Control number of workers/threads:](#control-number-of-workers/threads:)
-  - [Exclude directories:](#exclude-directories:)
+  - [Control number of workers/threads](#control-number-of-workers/threads)
+  - [Exclude directories](#exclude-directories)
 - [About threads](#about-threads)
 - [Dev](#dev)
   - [pre-commit](#pre-commit)
@@ -151,13 +151,13 @@ gitrack -p /home/elliot -u -v
 gitrack -p /home/elliot -u -d # without -u, -d will not work
 ```
 
-## Control number of workers/threads:
+## Control number of workers/threads
 
 ```bash
 gitrack -p /home/elliot -u -w 6
 ```
 
-## Exclude directories:
+## Exclude directories
 
 ```bash
 gitrack -p /home/elliot -e "/home/elliot/.cache" -e "/home/elliot/.local" -u -w 6

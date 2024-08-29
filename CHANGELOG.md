@@ -6,17 +6,6 @@
   - [[1.1.0] - 2024-08-23](#[1.1.0]---2024-08-23)
   - [[1.0.0] - 2024-08-22](#[1.0.0]---2024-08-22)
 <!-- END OF TOC -->
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [Changelog](#changelog)
-  - [[unreleased]](#unreleased)
-  - [[2.0.0] - 2024-08-23](#200---2024-08-23)
-  - [[1.1.0] - 2024-08-23](#110---2024-08-23)
-  - [[1.0.0] - 2024-08-22](#100---2024-08-22)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 # Changelog
 
