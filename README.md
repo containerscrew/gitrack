@@ -9,7 +9,6 @@
 - [Installation](#installation)
   - [Install latest version](#install-latest-version)
   - [Install specific release](#install-specific-release)
-  - [Using cargo](#using-cargo)
 - [Uninstall](#uninstall)
 - [Usage](#usage)
   - [Help](#help)
@@ -72,25 +71,23 @@ Implemented features:
 ## Install latest version
 
 ```shell
-curl --proto '=https' --tlsv1.2 -sSfL https://raw.githubusercontent.com/containerscrew/gitrack/main/install.sh | sh
+$ cargo install gitrack
+```
+
+Or the binary:
+
+```shell
+$ curl --proto '=https' --tlsv1.2 -sSfL https://raw.githubusercontent.com/containerscrew/gitrack/main/install.sh | sh
 ```
 
 ## Install specific release
 
 ```shell
-curl --proto '=https' --tlsv1.2 -sSfL https://raw.githubusercontent.com/containerscrew/gitrack/main/install.sh | sh -s -- -v "v0.8.0"
+cargo install gitrack@0.8.0
 ```
 
-## Using cargo
-
-* **[Install Cargo](https://rustup.rs/)**
-
-Open a terminal and run:
-
 ```shell
-git clone https://github.com/containerscrew/gitrack
-cd gitrack
-make install
+$ curl --proto '=https' --tlsv1.2 -sSfL https://raw.githubusercontent.com/containerscrew/gitrack/main/install.sh | sh -s -- -v "v0.8.0"
 ```
 
 # Uninstall
@@ -99,10 +96,10 @@ make install
 sudo rm /usr/local/bin/gitrack
 ```
 
-With cargo:
+If you installed the cli using cargo:
 
 ```shell
-make uninstall
+cargo uninstall gitrack
 ```
 
 # Usage
