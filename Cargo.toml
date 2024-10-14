@@ -5,6 +5,8 @@ edition = "2021"
 authors = ["containerscrew info@containerscrew.com"]
 repository = "https://github.com/containerscrew/gitrack"
 rust-version = "1.80.1"
+license-file = "LICENSE"
+description = "Scan local git repositories"
 
 
 [dependencies]
