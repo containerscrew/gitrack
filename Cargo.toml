@@ -12,7 +12,7 @@ description = "Scan local git repositories"
 [dependencies]
 clap = { version = "4.5.22", features = ["derive"] }
 colored = "2.1.0"
-git2 = "0.19.0"
+git2 = "0.20.0"
 walkdir = "2.5.0"
 home = "0.5.9"
 openssl = { version = "0.10.68", features = ["vendored"] }
