@@ -9,7 +9,6 @@ use clap::Parser;
     about = "Inspect your untracked local Git files",
     arg_required_else_help = false
 )]
-
 pub struct Args {
     #[arg(
         short = 'p',
