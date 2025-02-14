@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.2.0] - 2025-02-14
+
+- Update CHANGELOG.md for release v2.1.1
+
+- Update colored crate
+
 ## [2.1.1] - 2025-02-14
 
 - Update CHANGELOG.md for release v2.1.0
