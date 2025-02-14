@@ -22,10 +22,9 @@ jobs:
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
-
           - os: macOS-latest
-            target: aarch64-apple-darwin
-
+            target: x86_64-apple-darwin
+            
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -41,13 +40,13 @@ jobs:
           sudo apt-get -qq update
           sudo apt-get -qq install musl-dev musl-tools pkg-config make
   
-      - name: Setup dependencies (macOS)
-        if: matrix.os == 'macOS-latest'
-        run: |
-          brew update
-          brew install pkg-config make openssl@3
-          echo "OPENSSL_DIR=$(brew --prefix openssl@3)" >> $GITHUB_ENV
-          echo "PKG_CONFIG_PATH=$(brew --prefix openssl@3)/lib/pkgconfig" >> $GITHUB_ENV
+      # - name: Setup dependencies (macOS)
+      #   if: matrix.os == 'macOS-latest'
+      #   run: |
+      #     brew update
+      #     brew install pkg-config make openssl@3
+      #     echo "OPENSSL_DIR=$(brew --prefix openssl@3)" >> $GITHUB_ENV
+      #     echo "PKG_CONFIG_PATH=$(brew --prefix openssl@3)/lib/pkgconfig" >> $GITHUB_ENV
 
       - name: Run build
         run: cargo build --release --locked --target ${{ matrix.target }}
