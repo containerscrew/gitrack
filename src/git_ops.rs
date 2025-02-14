@@ -6,11 +6,12 @@ use std::path::{Path, PathBuf};
 use std::sync::mpsc;
 use std::sync::mpsc::Sender;
 use threadpool::ThreadPool;
-use walkdir::{DirEntry, WalkDir};
+use walkdir::WalkDir;
 
 // Check if a directory should be excluded
-fn is_excluded_dir(entry: &DirEntry, exclude_dirs: &[String]) -> bool {
-    exclude_dirs.iter().any(|dir| entry.path().starts_with(dir))
+fn is_excluded_dir(entry: &walkdir::DirEntry, exclude_dirs: &[String]) -> bool {
+    let path = entry.path(); // Get the full path of the directory
+    exclude_dirs.iter().any(|exclude| path.to_string_lossy().contains(exclude))
 }
 
 // Send the path to the channel if it is a Git repository
