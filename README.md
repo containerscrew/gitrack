@@ -1,5 +1,6 @@
 # gitrack
 
+
 <!-- START OF TOC !DO NOT EDIT THIS CONTENT MANUALLY-->
 **Table of Contents**  *generated with [mtoc](https://github.com/containerscrew/mtoc)*
 - [gitrack](#gitrack)
@@ -83,7 +84,7 @@ $ curl --proto '=https' --tlsv1.2 -sSfL https://raw.githubusercontent.com/contai
 ## Install specific release
 
 ```shell
-cargo install gitrack@0.8.0
+cargo install gitrack@2.0.0
 ```
 
 ```shell
