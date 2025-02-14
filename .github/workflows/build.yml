@@ -43,7 +43,7 @@ jobs:
         if: matrix.os == 'macOS-latest'
         run: |
           brew update
-          brew install pkg-config make
+          brew install pkg-config make openssl
 
       - name: Run build
         run: cargo build --release --locked --target ${{ matrix.target }}
