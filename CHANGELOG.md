@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.1] - 2025-02-14
+
+- Update CHANGELOG.md for release v2.1.0
+
+- Fix -e exclude dir path
+
 ## [2.1.0] - 2025-02-14
 
 - Fix linter
