@@ -43,9 +43,9 @@ jobs:
         if: matrix.os == 'macOS-latest'
         run: |
           brew update
-          brew install pkg-config make openssl
-          export PATH="/usr/local/opt/openssl/bin:$PATH"
-          export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
+          brew install pkg-config make openssl@3
+          echo "OPENSSL_DIR=$(brew --prefix openssl@3)" >> $GITHUB_ENV
+          echo "PKG_CONFIG_PATH=$(brew --prefix openssl@3)/lib/pkgconfig" >> $GITHUB_ENV
 
       - name: Run build
         run: cargo build --release --locked --target ${{ matrix.target }}
