@@ -41,14 +41,19 @@ jobs:
           toolchain: stable
           targets: ${{ matrix.target }}
 
-      - name: Setup dependencies (Ubuntu)
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          sudo apt-get -qq update
-          sudo apt-get -qq install musl-dev musl-tools pkg-config make
+      # - name: Setup dependencies (Ubuntu)
+      #   if: matrix.os == 'ubuntu-latest'
+      #   run: |
+      #     sudo apt-get -qq update
+      #     sudo apt-get -qq install musl-dev musl-tools pkg-config make
   
-      - name: Run build
-        run: cargo build --release --locked --target ${{ matrix.target }}
+      - name: Build binary
+        uses: houseabsolute/actions-rust-cross@v0
+        with:
+          command: build
+          target: ${{ matrix.target }}
+          args: "--locked --release"
+          strip: true
       
       - name: Run the binary
         run: ./target/${{ matrix.target }}/release/gitrack -p /tmp
