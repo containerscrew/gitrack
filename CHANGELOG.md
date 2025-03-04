@@ -1,16 +1,62 @@
-<!-- START OF TOC !DO NOT EDIT THIS CONTENT MANUALLY-->
-**Table of Contents**  *generated with [mtoc](https://github.com/containerscrew/mtoc)*
-- [Changelog](#changelog)
-  - [[2.2.0] - 2025-02-14](#[2.2.0]---2025-02-14)
-  - [[2.1.1] - 2025-02-14](#[2.1.1]---2025-02-14)
-  - [[2.1.0] - 2025-02-14](#[2.1.0]---2025-02-14)
-  - [[2.0.0] - 2024-08-23](#[2.0.0]---2024-08-23)
-  - [[1.1.0] - 2024-08-23](#[1.1.0]---2024-08-23)
-  - [[1.0.0] - 2024-08-22](#[1.0.0]---2024-08-22)
-<!-- END OF TOC -->
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [2.2.1] - 2025-03-04
+
+- Update CHANGELOG.md for release v2.2.0
+
+- Cargo fmt
+
+- Cargo clippy
+
+- Bump clap from 4.5.29 to 4.5.30
+
+Bumps [clap](https://github.com/clap-rs/clap) from 4.5.29 to 4.5.30.
+- [Release notes](https://github.com/clap-rs/clap/releases)
+- [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.29...clap_complete-v4.5.30)
+
+---
+updated-dependencies:
+- dependency-name: clap
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #21 from containerscrew/dependabot/cargo/clap-4.5.30
+
+Bump clap from 4.5.29 to 4.5.30
+
+- Bump clap from 4.5.30 to 4.5.31
+
+Bumps [clap](https://github.com/clap-rs/clap) from 4.5.30 to 4.5.31.
+- [Release notes](https://github.com/clap-rs/clap/releases)
+- [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.30...v4.5.31)
+
+---
+updated-dependencies:
+- dependency-name: clap
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #22 from containerscrew/dependabot/cargo/clap-4.5.31
+
+Bump clap from 4.5.30 to 4.5.31
+
+- Update build pipeline
+
+- Wip: build pipeline
+
+- Update release pipeline
+
+- Pre-commit
 
 ## [2.2.0] - 2025-02-14
 
