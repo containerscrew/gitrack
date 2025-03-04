@@ -22,7 +22,7 @@ jobs:
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
-          
+
           - os: ubuntu-latest
             target: aarch64-unknown-linux-gnu
 
@@ -31,7 +31,7 @@ jobs:
 
           - os: macOS-latest
             target: aarch64-apple-darwin
-            
+
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -40,7 +40,7 @@ jobs:
         with:
           toolchain: stable
           targets: ${{ matrix.target }}
-  
+
       - name: Build binary
         uses: houseabsolute/actions-rust-cross@v0
         with:
@@ -48,7 +48,7 @@ jobs:
           target: ${{ matrix.target }}
           args: "--locked --release"
           strip: true
-      
+
       - name: Run the binary
         if: matrix.target != 'aarch64-unknown-linux-gnu'
         run: ./target/${{ matrix.target }}/release/gitrack -p /tmp

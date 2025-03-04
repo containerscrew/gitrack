@@ -50,7 +50,7 @@ jobs:
         with:
           toolchain: stable
           targets: ${{ matrix.platform.target }}
-    
+
       - name: Build binary
         uses: houseabsolute/actions-rust-cross@v0
         with:
