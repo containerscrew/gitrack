@@ -2,6 +2,7 @@ use crate::git_ops::{check_untracked_files, find_git_repos, show_diff};
 use clap::Parser;
 use cli::Args;
 use colored::*;
+use git_ops::pull_changes;
 use std::path::Path;
 
 mod cli;
@@ -41,7 +42,20 @@ fn main() {
 
     // Process each repository
     for repo in git_repos {
-        process_repo(&repo, &args);
+        // Git pull to update the repository
+        if args.pull {
+            println_orange!("Pulling latest changes in: {}", repo.display());
+            match pull_changes(&repo) {
+                Ok(result) => println_orange!(
+                    "Successfully pulled changes in: {}. {}",
+                    repo.display(),
+                    result
+                ),
+                Err(e) => println_light_orange!("{}: {}", "Error pulling changes".red(), e),
+            }
+        } else {
+            process_repo(&repo, &args);
+        }
     }
 }
 

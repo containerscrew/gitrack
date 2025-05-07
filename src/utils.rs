@@ -1,4 +1,7 @@
+use std::io;
+
 use colored::Colorize;
+use which::which;
 
 pub fn default_home_dir() -> String {
     match home::home_dir() {
@@ -8,4 +11,13 @@ pub fn default_home_dir() -> String {
             "/".to_string()
         }
     }
+}
+
+pub fn find_binary_path(binary_name: &str) -> Result<std::path::PathBuf, io::Error> {
+    which(binary_name).map_err(|e| {
+        io::Error::new(
+            io::ErrorKind::NotFound,
+            format!("'{}' not found: {}", binary_name, e),
+        )
+    })
 }

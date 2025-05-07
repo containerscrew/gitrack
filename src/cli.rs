@@ -65,4 +65,12 @@ pub struct Args {
         required = false
     )]
     pub verbose: bool,
+
+    #[arg(
+        long = "pull",
+        help = "Pull changes using git pull",
+        default_value_t = false,
+        required = false
+    )]
+    pub pull: bool,
 }

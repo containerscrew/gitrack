@@ -14,11 +14,12 @@
 - [Usage](#usage)
   - [Help](#help)
   - [Scan folders containing git repositories](#scan-folders-containing-git-repositories)
-  - [Scanning for untracked changes (summarized)](#scanning-for-untracked-changes-(summarized))
-  - [Scanning for untracked changes (verbose)](#scanning-for-untracked-changes-(verbose))
+  - [Scanning for untracked changes (summarized)](#scanning-for-untracked-changes-summarized)
+  - [Scanning for untracked changes (verbose)](#scanning-for-untracked-changes-verbose)
   - [Diff files for untracked changes](#diff-files-for-untracked-changes)
-  - [Control number of workers/threads](#control-number-of-workers/threads)
+  - [Control number of workers/threads](#control-number-of-workersthreads)
   - [Exclude directories](#exclude-directories)
+  - [Pulling changes](#pulling-changes)
 - [About threads](#about-threads)
 - [Dev](#dev)
   - [pre-commit](#pre-commit)
@@ -158,7 +159,15 @@ gitrack -p /home/elliot -u -w 6
 ## Exclude directories
 
 ```bash
-gitrack -p /home/elliot -e "/home/elliot/.cache" -e "/home/elliot/.local" -u -w 6
+gitrack -p /home/elliot -e .terragrunt-cache/ -e .terraform/ -u -w 6
+```
+
+## Pulling changes
+
+Run a `git pull` to update local code from remote repositories:
+
+```shell
+gitrack -p /home/elliot/Documents/Code/ -e .terragrunt-cache/ -e .terraform/ --pull
 ```
 
 # About threads

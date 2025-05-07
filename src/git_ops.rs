@@ -3,10 +3,13 @@ use git2::{DiffOptions, Repository, StatusOptions};
 use std::io;
 use std::io::ErrorKind;
 use std::path::{Path, PathBuf};
+use std::process::{Command, Stdio};
 use std::sync::mpsc;
 use std::sync::mpsc::Sender;
 use threadpool::ThreadPool;
 use walkdir::WalkDir;
+
+use crate::utils::find_binary_path;
 
 // Check if a directory should be excluded
 fn is_excluded_dir(entry: &walkdir::DirEntry, exclude_dirs: &[String]) -> bool {
@@ -65,6 +68,27 @@ pub fn check_untracked_files(repo_path: &Path) -> Result<Vec<String>, git2::Erro
         }
     }
     Ok(untracked_files)
+}
+
+// Pull changes in a Git repository
+// TODO: use git2 library instead of command process, like the rest of the code
+pub fn pull_changes(repo_path: &Path) -> Result<String, io::Error> {
+    let git_path = find_binary_path("git").unwrap_or_else(|_| "/usr/bin/git".into());
+
+    // Ejecutar git pull en el directorio correcto
+    let output = Command::new(git_path)
+        .arg("pull")
+        .current_dir(repo_path)
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped())
+        .output()?;
+
+    if output.status.success() {
+        Ok(String::from_utf8_lossy(&output.stdout).into_owned())
+    } else {
+        let error_msg = String::from_utf8_lossy(&output.stderr);
+        Err(io::Error::new(ErrorKind::Other, error_msg.to_string()))
+    }
 }
 
 // Show the diff for a specific file in a Git repository

@@ -1,13 +1,12 @@
 [package]
 name = "gitrack"
-version = "2.2.1"
+version = "2.3.0"
 edition = "2021"
 authors = ["containerscrew info@containerscrew.com"]
 repository = "https://github.com/containerscrew/gitrack"
 rust-version = "1.80.1"
 license-file = "LICENSE"
-description = "Scan local git repositories"
-
+description = "Scan local git repositories and show their status (check untracked files)"
 
 [dependencies]
 clap = { version = "4.5.37", features = ["derive"] }
@@ -16,6 +15,7 @@ git2 = { version = "0.20.2", default-features = false }
 walkdir = "2.5.0"
 home = "0.5.9"
 threadpool = "1.8.1"
+which = "7.0.3"
 
 # Pending to add benchmark
 #[dev-dependencies]
