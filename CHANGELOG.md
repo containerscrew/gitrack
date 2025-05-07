@@ -1,17 +1,174 @@
-<!-- START OF TOC !DO NOT EDIT THIS CONTENT MANUALLY-->
-**Table of Contents**  *generated with [mtoc](https://github.com/containerscrew/mtoc)*
-- [Changelog](#changelog)
-  - [[2.2.1] - 2025-03-04](#221---2025-03-04)
-  - [[2.2.0] - 2025-02-14](#220---2025-02-14)
-  - [[2.1.1] - 2025-02-14](#211---2025-02-14)
-  - [[2.1.0] - 2025-02-14](#210---2025-02-14)
-  - [[2.0.0] - 2024-08-23](#200---2024-08-23)
-  - [[1.1.0] - 2024-08-23](#110---2024-08-23)
-  - [[1.0.0] - 2024-08-22](#100---2024-08-22)
-<!-- END OF TOC -->
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## [2.3.0] - 2025-05-07
+
+- Update CHANGELOG.md for release v2.2.1
+
+- Bump clap from 4.5.31 to 4.5.32
+
+Bumps [clap](https://github.com/clap-rs/clap) from 4.5.31 to 4.5.32.
+- [Release notes](https://github.com/clap-rs/clap/releases)
+- [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/clap-rs/clap/compare/v4.5.31...clap_complete-v4.5.32)
+
+---
+updated-dependencies:
+- dependency-name: clap
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #23 from containerscrew/dependabot/cargo/clap-4.5.32
+
+Bump clap from 4.5.31 to 4.5.32
+
+- Bump git2 from 0.20.0 to 0.20.1
+
+Bumps [git2](https://github.com/rust-lang/git2-rs) from 0.20.0 to 0.20.1.
+- [Changelog](https://github.com/rust-lang/git2-rs/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/rust-lang/git2-rs/compare/git2-0.20.0...git2-0.20.1)
+
+---
+updated-dependencies:
+- dependency-name: git2
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #24 from containerscrew/dependabot/cargo/git2-0.20.1
+
+Bump git2 from 0.20.0 to 0.20.1
+
+- Bump clap from 4.5.32 to 4.5.33
+
+Bumps [clap](https://github.com/clap-rs/clap) from 4.5.32 to 4.5.33.
+- [Release notes](https://github.com/clap-rs/clap/releases)
+- [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.32...clap_complete-v4.5.33)
+
+---
+updated-dependencies:
+- dependency-name: clap
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #25 from containerscrew/dependabot/cargo/clap-4.5.33
+
+Bump clap from 4.5.32 to 4.5.33
+
+- Bump clap from 4.5.33 to 4.5.34
+
+Bumps [clap](https://github.com/clap-rs/clap) from 4.5.33 to 4.5.34.
+- [Release notes](https://github.com/clap-rs/clap/releases)
+- [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.33...clap_complete-v4.5.34)
+
+---
+updated-dependencies:
+- dependency-name: clap
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #26 from containerscrew/dependabot/cargo/clap-4.5.34
+
+Bump clap from 4.5.33 to 4.5.34
+
+- Bump clap from 4.5.34 to 4.5.35
+
+Bumps [clap](https://github.com/clap-rs/clap) from 4.5.34 to 4.5.35.
+- [Release notes](https://github.com/clap-rs/clap/releases)
+- [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.34...clap_complete-v4.5.35)
+
+---
+updated-dependencies:
+- dependency-name: clap
+  dependency-version: 4.5.35
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #27 from containerscrew/dependabot/cargo/clap-4.5.35
+
+Bump clap from 4.5.34 to 4.5.35
+
+- Bump clap from 4.5.35 to 4.5.36
+
+Bumps [clap](https://github.com/clap-rs/clap) from 4.5.35 to 4.5.36.
+- [Release notes](https://github.com/clap-rs/clap/releases)
+- [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.35...clap_complete-v4.5.36)
+
+---
+updated-dependencies:
+- dependency-name: clap
+  dependency-version: 4.5.36
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #28 from containerscrew/dependabot/cargo/clap-4.5.36
+
+Bump clap from 4.5.35 to 4.5.36
+
+- Bump clap from 4.5.36 to 4.5.37
+
+Bumps [clap](https://github.com/clap-rs/clap) from 4.5.36 to 4.5.37.
+- [Release notes](https://github.com/clap-rs/clap/releases)
+- [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.36...clap_complete-v4.5.37)
+
+---
+updated-dependencies:
+- dependency-name: clap
+  dependency-version: 4.5.37
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #29 from containerscrew/dependabot/cargo/clap-4.5.37
+
+Bump clap from 4.5.36 to 4.5.37
+
+- Bump git2 from 0.20.1 to 0.20.2
+
+Bumps [git2](https://github.com/rust-lang/git2-rs) from 0.20.1 to 0.20.2.
+- [Changelog](https://github.com/rust-lang/git2-rs/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/rust-lang/git2-rs/compare/git2-0.20.1...git2-0.20.2)
+
+---
+updated-dependencies:
+- dependency-name: git2
+  dependency-version: 0.20.2
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #30 from containerscrew/dependabot/cargo/git2-0.20.2
+
+Bump git2 from 0.20.1 to 0.20.2
+
+- Feat: pull changes for every git repo
 
 ## [2.2.1] - 2025-03-04
 
