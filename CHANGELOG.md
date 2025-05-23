@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.3.1] - 2025-05-23
+
+- Update CHANGELOG.md for release v2.3.0
+
+- Bump clap from 4.5.37 to 4.5.38
+
+Bumps [clap](https://github.com/clap-rs/clap) from 4.5.37 to 4.5.38.
+- [Release notes](https://github.com/clap-rs/clap/releases)
+- [Changelog](https://github.com/clap-rs/clap/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/clap-rs/clap/compare/clap_complete-v4.5.37...clap_complete-v4.5.38)
+
+---
+updated-dependencies:
+- dependency-name: clap
+  dependency-version: 4.5.38
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+
+- Merge pull request #31 from containerscrew/dependabot/cargo/clap-4.5.38
+
+Bump clap from 4.5.37 to 4.5.38
+
+- Fix: internal git pull command using --pull
+
+- Cargo update
+
 ## [2.3.0] - 2025-05-07
 
 - Update CHANGELOG.md for release v2.2.1
