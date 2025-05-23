@@ -78,6 +78,8 @@ pub fn pull_changes(repo_path: &Path) -> Result<String, io::Error> {
     // Ejecutar git pull en el directorio correcto
     let output = Command::new(git_path)
         .arg("pull")
+        .arg("origin")
+        .arg("HEAD")
         .current_dir(repo_path)
         .stdout(Stdio::piped())
         .stderr(Stdio::piped())
