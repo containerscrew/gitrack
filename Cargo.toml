@@ -11,7 +11,7 @@ description = "Scan local git repositories and show their status (check untracke
 [dependencies]
 clap = { version = "4.5.53", features = ["derive"] }
 colored = "3.0.0"
-git2 = { version = "0.20.2", default-features = false }
+git2 = { version = "0.20.3", default-features = false }
 walkdir = "2.5.0"
 home = "0.5.12"
 threadpool = "1.8.1"
