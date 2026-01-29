@@ -9,7 +9,7 @@ license-file = "LICENSE"
 description = "Scan local git repositories and show their status (check untracked files)"
 
 [dependencies]
-clap = { version = "4.5.55", features = ["derive"] }
+clap = { version = "4.5.56", features = ["derive"] }
 colored = "3.1.1"
 git2 = { version = "0.20.3", default-features = false }
 walkdir = "2.5.0"
