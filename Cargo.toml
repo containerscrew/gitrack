@@ -15,7 +15,7 @@ git2 = { version = "0.20.4", default-features = false }
 walkdir = "2.5.0"
 home = "0.5.12"
 threadpool = "1.8.1"
-which = "8.0.0"
+which = "8.0.1"
 
 # Pending to add benchmark
 #[dev-dependencies]
